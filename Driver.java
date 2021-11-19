@@ -8,6 +8,8 @@ public class Driver extends Person {
     private String driverLicenseNumber;
     private ArrayList<String> favAreas;
     private ArrayList<Integer> rates;
+    private Ride availbleRide;
+	private boolean notified = false;
 
     public Boolean isValid(personInfo personInfo,String nationalId,String driverLicenseNumber){
         super.isValid(personInfo);
@@ -15,6 +17,18 @@ public class Driver extends Person {
         personInfo.setCurrentStatus(Status.valueOf("Pending"));
         return true;
     }
+    public void setAvailbleRide(Ride ride) {
+		availbleRide = ride;
+	}
+
+	public Ride getAvailbleRide() {
+		return availbleRide;
+	}
+
+	public void mkNotified() {
+		notified = true;
+	}
+
 
     public void addFavAreas(String area)
     {
@@ -60,5 +74,9 @@ public class Driver extends Person {
 
     public void setRates(ArrayList<Integer> rates) {
         this.rates = rates;
+    }
+    public Ride mkOffer() {
+    	availbleRide.setPrice(int Price);
+    	return availbleRide;
     }
 }

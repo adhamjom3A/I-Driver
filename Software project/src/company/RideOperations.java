@@ -1,7 +1,8 @@
 package company;
 import java.util.ArrayList;
 public class RideOperations  {
-	public void assignDriverToRide(arrayLists inventory) {
+	private arrayLists inventory;
+	public void assignDriverToRide() {
 		for (int request = 0; request < inventory.RideRequest.size(); request++) {
 			for (int driver = 0; driver < inventory.driversList.size(); driver++) {
 				for (int favArea = 0; favArea < inventory.driversList.get(driver).getFavAreas().size(); favArea++) {

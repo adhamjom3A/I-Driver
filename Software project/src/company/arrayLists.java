@@ -9,7 +9,7 @@ public class arrayLists {
 	public ArrayList<Ride> ridesList;
 	public ArrayList<Ride> RideRequest;
 
-	private static arrayLists getInstance() {
+	public static arrayLists getInstance() {
 		if (uniqueLists == null) {
 			uniqueLists = new arrayLists();
 			return uniqueLists;

@@ -3,8 +3,8 @@ package company;
 import java.util.Scanner;
 
 public class User extends Person {
-	private String Source;
-	private String Destination;
+	/*private String Source;
+	private String Destination;*/
 
 	public Boolean isValid(personInfo personInfo) {
 		super.isValid(personInfo);

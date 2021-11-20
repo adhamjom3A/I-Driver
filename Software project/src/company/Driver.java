@@ -30,7 +30,7 @@ public class Driver extends Person {
 		notified = true;
 	}
 
-	public void addFavAreas(String area) {
+	public void addFavArea(String area) {
 		favAreas.add(area);
 	}
 
@@ -54,17 +54,17 @@ public class Driver extends Person {
 		return favAreas;
 	}
 
-	public void setFavAreas(ArrayList<String> favAreas) {
+	/*public void setFavAreas(ArrayList<String> favAreas) {
 		this.favAreas = favAreas;
-	}
+	}*/
 
 	public ArrayList<Integer> getRates() {
 		return rates;
 	}
 
-	public void setRates(ArrayList<Integer> rates) {
+	/*public void setRates(ArrayList<Integer> rates) {
 		this.rates = rates;
-	}
+	}*/
 
 	public Ride mkOffer() {
 

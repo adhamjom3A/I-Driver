@@ -40,35 +40,31 @@ public class arrayLists {
 		return driversList;
 	}
 
-	public void setDriversList(ArrayList<Driver> driversList) {
+	/*public void setDriversList(ArrayList<Driver> driversList) {
 		this.driversList = driversList;
-	}
+	}*/
 
 	public ArrayList<User> getUsersList() {
 		return usersList;
 	}
 
-	public void setUsersList(ArrayList<User> usersList) {
+	/*public void setUsersList(ArrayList<User> usersList) {
 		this.usersList = usersList;
-	}
+	}*/
 
 	public ArrayList<Ride> getRidesList() {
 		return ridesList;
 	}
 
-	public void setRidesList(Ride r) {
+	/*public void setRidesList(Ride r) {
 		this.ridesList.add(r);
-	}
+	}*/
 
 	public ArrayList< Ride > getRideRequest() {
 		return RideRequest;
 	}
 
-	public void setRideRequest(Ride rideRequest) {
+	/*public void setRideRequest(Ride rideRequest) {
 		this.RideRequest.add(rideRequest);
-	}
-
-	public void AddUser(User user) {
-		usersList.add(user);
-	}
+	}*/
 }

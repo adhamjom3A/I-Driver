@@ -181,6 +181,7 @@ public class Main {
             // System.out.println("stored successfully");
             suitableDriverToRide.get(i).mkOffer(selectedRide);
             if (newUser.acceptOffer(suitableDriverToRide.get(i))){
+                suitableDriverToRide.get(i).getPersonInfo().setCurrentStatus(Status.NOTACTIVE);
                 Ride compelteRide =suitableDriverToRide.get(i).getAvailbleRide();
                 compelteRide.setDriver(suitableDriverToRide.get(i));
                 m.addCompRide(compelteRide);

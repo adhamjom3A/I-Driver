@@ -3,7 +3,7 @@ package company;
 
 import java.util.regex.Pattern;
 
-enum Status {SUSPENDED,PENDING,ACTIVE}
+enum Status {SUSPENDED,PENDING,ACTIVE,NOTACTIVE}
 public class personInfo {
     private String userName;
     private String phoneNumber;

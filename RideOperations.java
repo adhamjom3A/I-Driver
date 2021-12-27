@@ -2,9 +2,13 @@ package company;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-public class RideOperations  {
+import java.util.Observable;
+
+public class RideOperations extends Observable {
 	DataBase inventory = DataBase.getInstance();
 	Status status=Status.ACTIVE;
+
+
 	public ArrayList<Driver> assignDriverToRide(Ride r) {
 		ArrayList<Driver> suitableDriver = new ArrayList<Driver>();
 			for (int driver = 0; driver < inventory.driversList.size(); driver++) {
@@ -13,6 +17,7 @@ public class RideOperations  {
 							.getFavAreas().get(favArea))
 							&& (inventory.driversList.get(driver).getPersonInfo().getCurrentStatus()
 									.equals(status))) {
+						inventory.driversList.get(driver).notify();
 						inventory.driversList.get(driver).setAvailbleRide(r);
 						inventory.driversList.get(driver).mkNotified();
 						suitableDriver.add(inventory.driversList.get(driver));

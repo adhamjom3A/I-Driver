@@ -3,9 +3,11 @@ package company;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Scanner;
 
-public class Driver extends Person {
+public class Driver extends Person implements Observer {
 	private RideOperations rideOperations;
 	private String nationalId;
 	private String driverLicenseNumber;
@@ -84,6 +86,12 @@ public class Driver extends Person {
 	public void setArrivedToDestination(boolean arrivedToLocaton) {
 		isArrivedToDestination = arrivedToLocaton;
 		rideOperations.setEvent(4,availbleRide);
+
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+
 
 	}
 }

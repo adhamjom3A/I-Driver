@@ -2,12 +2,14 @@ package company;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class User extends Person{
 	/*public User (Person person){
 		this.setPersonInfo(person.getPersonInfo());
 	}*/
+	public ArrayList<Ride> userRides = new ArrayList<Ride>();
 	private RideOperations rideOperations;
 	public void isValid(personInfo personInfo) {
 		super.isValid(personInfo);
@@ -41,10 +43,10 @@ public class User extends Person{
 		else
 			System.out.println("rate must be in range 1 - 5 ");
 	}
-
 	@Override
 	public String toString() {
 		return "User name is " + this.getPersonInfo().getUserName()+
 				" with phone number " + this.getPersonInfo().getPhoneNumber();
 	}
+
 }

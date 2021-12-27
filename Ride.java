@@ -8,6 +8,7 @@ public class Ride {
 	private String Destination;
 	private User user;
 	private Driver driver;
+	private int numberOfPassenger;
 	private int price;
 	private int Rate;
 	private ArrayList<event> rideEvents=new ArrayList<event>();
@@ -47,12 +48,16 @@ public class Ride {
 	public void setDestination(String destination) {
 		Destination = destination;
 	}
-
+	public int getNumberOfPassenger() {
+		return numberOfPassenger;
+	}
+	public void setNumberOfPassenger(int numberOfPassenger) {
+		this.numberOfPassenger = numberOfPassenger;
+	}
 	public ArrayList<event> getRideEvents() {
 		ArrayList<event> copiedEvents = new ArrayList<event>(rideEvents);
 		return copiedEvents;
 	}
-
 	public void ShowRideDetails() {
 	System.out.println("Ride Source is " + this.getSource()+
 					"Ride Distenation is " + this.getDestination()
@@ -61,7 +66,6 @@ public class Ride {
 					+ "which is confirmed with Driver "
 					+ this.getDriver().getPersonInfo().getUserName());
 	}
-
 	@Override
 	public String toString() {
 		return

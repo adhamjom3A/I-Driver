@@ -1,25 +1,26 @@
 package company;
 import java.lang.String;
-public  class Person implements Regist{
-    private personInfo personInfo;
+import java.util.regex.Pattern;
 
+public  class Person {
+    private personInfo PersonInfor=new personInfo();
     public personInfo getPersonInfo() {
-        return personInfo;
+        return PersonInfor;
     }
-
-    public void setPersonInfo(company.personInfo personInfo) {
-        this.personInfo = personInfo;
+    public void setPersonInfo(personInfo personInfo) {
+        this.PersonInfor = personInfo;
     }
+    public void isValid(personInfo personInfo) {}
+       /* return  (isValidUserName(personInfo.getUserName())&&personInfo.getEmail().contains("@")
+                &&isValidPassword(personInfo.getPassword())
+                &&isValidPhoneNum(personInfo.getPhoneNumber()));
+    }*/
 
-    public Boolean isValid(personInfo personInfo) {
 
-        if(!personInfo.getEmail().contains("@")){
-            System.out.println("invalid email");
-            return false;
-        }
-        else {
-            return true;}
+    public void regist(personInfo p) {
+        PersonInfor=p;
     }
-
-
+    public void setStatus(Status s){
+        getPersonInfo().setCurrentStatus(s);
+    }
 }

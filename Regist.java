@@ -1,8 +1,14 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package company;
 
-public abstract interface Regist{
-    public Boolean isValid(personInfo personInfo);
+public interface Regist {
+    Boolean isValid(personInfo var1);
 
-    public personInfo regist(String name, String phoneNum, String Email,String password, String role );
-    public personInfo regist(String name, String phoneNum,String password, String role);
+    personInfo regist(String var1, String var2, String var3, String var4, String var5);
+
+    personInfo regist(String var1, String var2, String var3, String var4);
 }

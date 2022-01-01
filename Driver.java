@@ -1,99 +1,93 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package company;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.Scanner;
 
-public class Driver extends Person implements Observer {
-	private RideOperations rideOperations;
-	private String nationalId;
-	private String driverLicenseNumber;
-	private ArrayList<String> favAreas=new ArrayList<String>();
-	private ArrayList<Integer> rates=new ArrayList<Integer>();
-	private Ride availbleRide=new Ride();
-	private boolean notified = false;
-	private boolean isArrivedToLocation=false;
-	private boolean isArrivedToDestination=false;
-	public Boolean isValid(personInfo personInfo, String nationalId, String driverLicenseNumber) {
-		super.isValid(personInfo);
-		personInfo.setCurrentStatus(Status.valueOf("Pending"));
-		return true;
-	}
-	public void setAvailbleRide(Ride ride) {
-		availbleRide = ride;
-	}
-	public Ride getAvailbleRide() {
-		return availbleRide;
-	}
-	public void mkNotified() {
-		notified = true;
-	}
-	public void addFavAreas(String area) {
-		this.favAreas.add(area);
-	}
-	public String getNationalId() {
-		return nationalId;
-	}
-	public void setNationalId(String nationalId) {
-		this.nationalId = nationalId;
-	}
-	public String getDriverLicenseNumber() {
-		return driverLicenseNumber;
-	}
-	public void setDriverLicenseNumber(String driverLicenseNumber) {
-		this.driverLicenseNumber = driverLicenseNumber;
-	}
-	public ArrayList<String> getFavAreas() {
-		return favAreas;
-	}
-	/*public void setFavAreas(ArrayList<String> favAreas) {
-		this.favAreas = favAreas;
-	}*/
-	public ArrayList<Integer> getRates() {
-		return rates;
-	}
-	public int getAvRate(){
-		int sum=0;
-		for (int i=0;i<this.rates.size();i++){
-			sum += this.rates.get(i);
-		}
-		return (sum/this.rates.size()+1);
-	}
-	public void setDriverRate(int rate) {
-		rates.add(rate);
-	}
-	public void mkOffer(Ride ride) {
-		System.out.println("Hi Driver.. Please enter Ride's price: ");
-		Scanner sin = new Scanner(System.in);
-		int price = sin.nextInt();
-    	availbleRide.setPrice(price);
-		rideOperations.setEvent(1,availbleRide);
-		//return getAvailbleRide().getPrice();
+public class Driver extends Person {
+    private String nationalId;
+    private String driverLicenseNumber;
+    private ArrayList<String> favAreas = new ArrayList();
+    private ArrayList<Integer> rates = new ArrayList();
+    private Ride availbleRide = new Ride();
+    private boolean notified = false;
+
+    public Driver() {
     }
-	public String toString() {
-		return "Driver name is " + this.getPersonInfo().getUserName()+
-				" Driver phone number " + this.getPersonInfo().getPhoneNumber();
-	}
 
-	public void setArrivedToLocation(boolean arrivedToLocation) {
-		isArrivedToLocation = arrivedToLocation;
-		rideOperations.setEvent(3,availbleRide);
-	}
+    public Boolean isValid(personInfo personInfo, String nationalId, String driverLicenseNumber) {
+        super.isValid(personInfo);
+        personInfo.setCurrentStatus(Status.valueOf("Pending"));
+        return true;
+    }
 
-	public void setArrivedToDestination(boolean arrivedToLocaton) {
-		isArrivedToDestination = arrivedToLocaton;
-		rideOperations.setEvent(4,availbleRide);
+    public void setAvailbleRide(Ride ride) {
+        this.availbleRide = ride;
+    }
 
-	}
+    public Ride getAvailbleRide() {
+        return this.availbleRide;
+    }
 
-	@Override
-	public void update(Observable o, Object arg) {
+    public void mkNotified() {
+        this.notified = true;
+    }
 
+    public void addFavAreas(String area) {
+        this.favAreas.add(area);
+    }
 
-	}
+    public String getNationalId() {
+        return this.nationalId;
+    }
+
+    public void setNationalId(String nationalId) {
+        this.nationalId = nationalId;
+    }
+
+    public String getDriverLicenseNumber() {
+        return this.driverLicenseNumber;
+    }
+
+    public void setDriverLicenseNumber(String driverLicenseNumber) {
+        this.driverLicenseNumber = driverLicenseNumber;
+    }
+
+    public ArrayList<String> getFavAreas() {
+        return this.favAreas;
+    }
+
+    public ArrayList<Integer> getRates() {
+        return this.rates;
+    }
+
+    public int getAvRate() {
+        int sum = 0;
+
+        for(int i = 0; i < this.rates.size(); ++i) {
+            sum += (Integer)this.rates.get(i);
+        }
+
+        return sum / this.rates.size() + 1;
+    }
+
+    public void setDriverRate(int rate) {
+        this.rates.add(rate);
+    }
+
+    public void mkOffer() {
+        System.out.println("Hi Driver.. Please enter Ride's price: ");
+        Scanner sin = new Scanner(System.in);
+        int price = sin.nextInt();
+        this.availbleRide.setPrice(price);
+    }
+
+    public String toString() {
+        String var10000 = this.getPersonInfo().getUserName();
+        return "Driver name is " + var10000 + " Driver phone number " + this.getPersonInfo().getPhoneNumber();
+    }
 }
-
-

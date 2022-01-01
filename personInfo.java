@@ -1,9 +1,12 @@
-package company;
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
 
+package company;
 
 import java.util.regex.Pattern;
 
-enum Status {SUSPENDED,PENDING,ACTIVE,NOTACTIVE}
 public class personInfo {
     private String userName;
     private String phoneNumber;
@@ -11,10 +14,13 @@ public class personInfo {
     private String password;
     private String role;
     private Status currentStatus;
-    private DataBase l = DataBase.getInstance();
+    private storage l = new storage();
+
+    public personInfo() {
+    }
 
     public String getUserName() {
-        return userName;
+        return this.userName;
     }
 
     public void setUserName(String userN) {
@@ -22,15 +28,15 @@ public class personInfo {
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return this.phoneNumber;
     }
 
     public void setPhoneNumber(String phone) {
-        phoneNumber = phone;
+        this.phoneNumber = phone;
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
@@ -38,18 +44,20 @@ public class personInfo {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
-        if (isValidPassword(password))
+        if (this.isValidPassword(password)) {
             this.password = password;
-        else
+        } else {
             System.out.println("Sorry!your password try another password");
+        }
+
     }
 
     public String getRole() {
-        return role;
+        return this.role;
     }
 
     public void setRole(String role) {
@@ -57,7 +65,7 @@ public class personInfo {
     }
 
     public Status getCurrentStatus() {
-        return currentStatus;
+        return this.currentStatus;
     }
 
     public void setCurrentStatus(Status currentStatus) {
@@ -66,17 +74,16 @@ public class personInfo {
 
     public boolean isValidUserName(String s) {
         Pattern pattern = Pattern.compile("[A-Za-z0-9_]+");
-        if (s.matches(String.valueOf(pattern)) && (s.length() > 3 && s.length() < 15) && isUniqueUser(s)) {
-            return true;
-        }
-        return false;
+        return s.matches(String.valueOf(pattern)) && s.length() > 3 && s.length() < 15 && this.isUniqueUser(s);
     }
 
     public boolean isUniqueUser(String s) {
-        for (int i = 0; i < l.usersList.size(); i++) {
-            if (s == l.usersList.get(i).getPersonInfo().getUserName())
+        for(int i = 0; i < this.l.getUsersList().size(); ++i) {
+            if (s == ((User)this.l.getUsersList().get(i)).getPersonInfo().getUserName()) {
                 return false;
+            }
         }
+
         return true;
     }
 
@@ -86,69 +93,74 @@ public class personInfo {
         String lowerCaseChars = "(.*[a-z].*)";
         String numbers = "(.*[0-9].*)";
         String specialChars = "(.*[@,#,$,%].*$)";
-        if ((password.length() > 15 || password.length() < 8) || (!password.matches(upperCaseChars))
-                || (!password.matches(lowerCaseChars)) || !password.matches(numbers)
-                || !password.matches(specialChars) || !isUniquePassword(password)) {
-            return false;
-        }
-        return true;
+        return password.length() <= 15 && password.length() >= 8 && password.matches(upperCaseChars) && password.matches(lowerCaseChars) && password.matches(numbers) && password.matches(specialChars) && this.isUniquePassword(password);
     }
 
     public boolean isUniquePassword(String p) {
-        for (int i = 0; i < l.usersList.size(); i++) {
-            if (p == l.usersList.get(i).getPersonInfo().getPassword())
+        for(int i = 0; i < this.l.getUsersList().size(); ++i) {
+            if (p == ((User)this.l.getUsersList().get(i)).getPersonInfo().getPassword()) {
                 return false;
+            }
         }
+
         return true;
     }
 
     public boolean isValidPhoneNum(String pnum) {
-        if (pnum.length() == 11 && pnum.charAt(0) == '0' && pnum.charAt(1) == '1')
-            return true;
-        return false;
+        return pnum.length() == 11 && pnum.charAt(0) == '0' && pnum.charAt(1) == '1';
     }
 
     public boolean isValidEmail(String email) {
-        if (email.contains("@") && isUniqueEmail(email) && email.contains(".com")) {
-            return true;
-        }
-        return false;
+        return email.contains("@") && this.isUniqueEmail(email) && email.contains(".com");
     }
 
     public boolean isUniqueEmail(String E) {
-        for (int i = 0; i < l.usersList.size(); i++) {
-            if (E == l.usersList.get(i).getPersonInfo().getEmail())
+        for(int i = 0; i < this.l.getUsersList().size(); ++i) {
+            if (E == ((User)this.l.getUsersList().get(i)).getPersonInfo().getEmail()) {
                 return false;
+            }
         }
+
         return true;
     }
+
     public boolean ExistNameUser(String e) {
-        for (int i = 0; i < l.usersList.size(); i++) {
-            if (l.usersList.get(i).getPersonInfo().getUserName().equals(e) )
+        for(int i = 0; i < this.l.getUsersList().size(); ++i) {
+            if (((User)this.l.getUsersList().get(i)).getPersonInfo().getUserName().equals(e)) {
                 return true;
+            }
         }
+
         return false;
     }
+
     public boolean ExistNameDriver(String e) {
-        for (int i = 0; i < l.driversList.size(); i++) {
-            if (l.driversList.get(i).getPersonInfo().getUserName().equals(e) )
+        for(int i = 0; i < this.l.getDriversList().size(); ++i) {
+            if (((Driver)this.l.getDriversList().get(i)).getPersonInfo().getUserName().equals(e)) {
                 return true;
+            }
         }
+
         return false;
     }
+
     public boolean ExistPasswordUser(String p) {
-        for (int i = 0; i < l.usersList.size(); i++) {
-            if (l.usersList.get(i).getPersonInfo().getPassword().equals(p)) {
+        for(int i = 0; i < this.l.getUsersList().size(); ++i) {
+            if (((User)this.l.getUsersList().get(i)).getPersonInfo().getPassword().equals(p)) {
                 return true;
             }
         }
-    return false;
+
+        return false;
     }
-    public boolean ExistPasswordDriver (String p){
-            for (int i = 0; i < l.driversList.size(); i++) {
-                if (l.driversList.get(i).getPersonInfo().getPassword() .equals(p) )
-                    return true;
+
+    public boolean ExistPasswordDriver(String p) {
+        for(int i = 0; i < this.l.getDriversList().size(); ++i) {
+            if (((Driver)this.l.getDriversList().get(i)).getPersonInfo().getPassword().equals(p)) {
+                return true;
             }
-            return false;
         }
+
+        return false;
+    }
 }

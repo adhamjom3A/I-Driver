@@ -1,26 +1,32 @@
-package company;
-import java.lang.String;
-import java.util.regex.Pattern;
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
 
-public  class Person {
-    private personInfo PersonInfor=new personInfo();
-    public personInfo getPersonInfo() {
-        return PersonInfor;
+package company;
+
+public class Person {
+    private personInfo PersonInfor = new personInfo();
+
+    public Person() {
     }
+
+    public personInfo getPersonInfo() {
+        return this.PersonInfor;
+    }
+
     public void setPersonInfo(personInfo personInfo) {
         this.PersonInfor = personInfo;
     }
-    public void isValid(personInfo personInfo) {}
-       /* return  (isValidUserName(personInfo.getUserName())&&personInfo.getEmail().contains("@")
-                &&isValidPassword(personInfo.getPassword())
-                &&isValidPhoneNum(personInfo.getPhoneNumber()));
-    }*/
 
+    public void isValid(personInfo personInfo) {
+    }
 
     public void regist(personInfo p) {
-        PersonInfor=p;
+        this.PersonInfor = p;
     }
-    public void setStatus(Status s){
-        getPersonInfo().setCurrentStatus(s);
+
+    public void setStatus(Status s) {
+        this.getPersonInfo().setCurrentStatus(s);
     }
 }

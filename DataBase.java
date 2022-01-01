@@ -1,93 +1,106 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package company;
 
 import java.util.ArrayList;
 
 public class DataBase {
-	private static DataBase uniqueLists=new DataBase();
-	public ArrayList<Driver> driversList=new ArrayList<Driver>();
-	public ArrayList<User> usersList=new ArrayList<User>();
-	public ArrayList<Ride> compridesList=new ArrayList<Ride>();
-	public ArrayList<Ride> RideRequest=new ArrayList<Ride>();
-	public ArrayList<Driver> pendingDrivers=new ArrayList<Driver>();
-	public ArrayList<String> adminDiscountAreas = new ArrayList<String>();
-	
-	public void addAdminDiscountAreas(String area)
-	{
-		adminDiscountAreas.add(area);
-	}
+    private static DataBase uniqueLists = new DataBase();
+    private ArrayList<Driver> driversList = new ArrayList();
+    private ArrayList<User> usersList = new ArrayList();
+    private ArrayList<Ride> compridesList = new ArrayList();
+    private ArrayList<Ride> RideRequest = new ArrayList();
+    private ArrayList<Driver> pendingDrivers = new ArrayList();
 
-	public ArrayList<String> getAdminDiscountAreas() {
-		return adminDiscountAreas;
-	}
+    public DataBase() {
+    }
 
-	public void setAdminDiscountAreas(ArrayList<String> adminDiscountAreas) {
-		this.adminDiscountAreas = adminDiscountAreas;
-	}
+    public void setDriversList(ArrayList<Driver> driversList) {
+        this.driversList = driversList;
+    }
 
-	public static DataBase getInstance() {
-		if (uniqueLists == null) {
-			uniqueLists = new DataBase();
-			return uniqueLists;
+    public ArrayList<Ride> getCompridesList() {
+        return this.compridesList;
+    }
 
-		} else {
-			return uniqueLists;
-		}
-	}
-	public void addDriver(Driver driver) {
-		driversList.add(driver);
-	}
-	public void addUser(User user) {
-		usersList.add(user);
+    public void setCompridesList(ArrayList<Ride> compridesList) {
+        this.compridesList = compridesList;
+    }
 
-	}
-	public void addCompRide(Ride ride) {
-		compridesList.add(ride);
-	}
-	public void addRideRequest(User user, String Source, String Destination) {
-		Ride r = user.Request(Source, Destination);RideRequest.add(r);
-	}
-	public ArrayList<Driver> getDriversList() {
-		return driversList;
-	}
-	/*public void setDriversList(ArrayList<Driver> driversList) {
-		this.driversList = driversList;
-	}*/
-	public ArrayList<User> getUsersList() {
-		return usersList;
-	}
-	public void setUsersList(ArrayList<User> usersList) {
-		this.usersList = usersList;
-	}
-	public ArrayList<Ride> getRidesList() {
-		return compridesList;
-	}
-	public void setRidesList(Ride r) {
-		this.compridesList.add(r);
-	}
-	public ArrayList< Ride > getRideRequest() {
-		return RideRequest;
-	}
-	public void setRideRequest(Ride rideRequest) {
-		this.RideRequest.add(rideRequest);
-	}
-	public void AddUser(User user) {
-		usersList.add(user);
-	}
-	/*public void showAllMemoryList(){
-		System.out.println("All Driver are");
-		for(int i=0;i<pendingDrivers.size();i++) {
-		System.out.println(i+1 + " - " + pendingDrivers.get(i));}
-		System.out.println("All Users are");
-			for(int i=0;i<usersList.size();i++){
-				System.out.println(i+1 + " - " +usersList.get(i));
-			}
-	}*/
-	public ArrayList<Driver> getPendingDrivers() {
-		return pendingDrivers;
-	}
-	public void addPendingDrivers(Driver d) {
-		pendingDrivers.add(d);
-		System.out.println("driver add sucessfuly");
-	}
+    public void setRideRequest(ArrayList<Ride> rideRequest) {
+        this.RideRequest = rideRequest;
+    }
+
+    public void setPendingDrivers(ArrayList<Driver> pendingDrivers) {
+        this.pendingDrivers = pendingDrivers;
+    }
+
+    public static DataBase getInstance() {
+        if (uniqueLists == null) {
+            uniqueLists = new DataBase();
+            return uniqueLists;
+        } else {
+            return uniqueLists;
+        }
+    }
+
+    public void addDriver(Driver driver) {
+        this.driversList.add(driver);
+    }
+
+    public void addUser(User user) {
+        this.usersList.add(user);
+    }
+
+    public void addCompRide(Ride ride) {
+        this.compridesList.add(ride);
+    }
+
+    public void addRideRequest(Ride r) {
+        this.RideRequest.add(r);
+    }
+
+    public ArrayList<Driver> getDriversList() {
+        return this.driversList;
+    }
+
+    public ArrayList<User> getUsersList() {
+        return this.usersList;
+    }
+
+    public void setUsersList(ArrayList<User> usersList) {
+        this.usersList = usersList;
+    }
+
+    public ArrayList<Ride> getRidesList() {
+        return this.compridesList;
+    }
+
+    public void setRidesList(Ride r) {
+        this.compridesList.add(r);
+    }
+
+    public ArrayList<Ride> getRideRequest() {
+        return this.RideRequest;
+    }
+
+    public void setRideRequest(Ride rideRequest) {
+        this.RideRequest.add(rideRequest);
+    }
+
+    public void AddUser(User user) {
+        this.usersList.add(user);
+    }
+
+    public ArrayList<Driver> getPendingDrivers() {
+        return this.pendingDrivers;
+    }
+
+    public void addPendingDrivers(Driver d) {
+        this.pendingDrivers.add(d);
+        System.out.println("driver add sucessfuly");
+    }
 }
-

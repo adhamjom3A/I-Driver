@@ -69,7 +69,9 @@ public class storage {
         ArrayList<Driver> l = this.DB.getPendingDrivers();
         return l;
     }
-
+    public void addAdminDiscountAreas(String area){
+        this.DB.addAdminDiscontsArea(area);
+    }
     public void addPendingDrivers(Driver d) {
         this.DB.addPendingDrivers(d);
     }

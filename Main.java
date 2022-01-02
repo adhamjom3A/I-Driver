@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    public Main() {
-    }
-
     public static void main(String[] args) {
         storage memory = new storage();
         Admin admin = new Admin();
@@ -33,7 +30,6 @@ public class Main {
                 String userName;
                 String password;
                 String choice;
-                String password;
                 if (firstStep.equals("1")) {
                     System.out.println("Please fill your information");
                     System.out.println("Your name: ");
@@ -181,7 +177,7 @@ public class Main {
         ArrayList<Driver> suitableDriverToRide = rideOperat.assignDriverToRide(selectedRide);
 
         for(int i = 0; i < suitableDriverToRide.size(); ++i) {
-            ((Driver)suitableDriverToRide.get(i)).mkOffer();
+            ((Driver)suitableDriverToRide.get(i)).mkOffer(5);
             if (newUser.acceptOffer((Driver)suitableDriverToRide.get(i))) {
                 Ride compelteRide = ((Driver)suitableDriverToRide.get(i)).getAvailbleRide();
                 compelteRide.setDriver((Driver)suitableDriverToRide.get(i));

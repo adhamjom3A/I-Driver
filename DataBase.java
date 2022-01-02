@@ -14,7 +14,7 @@ public class DataBase {
     private ArrayList<Ride> compridesList = new ArrayList();
     private ArrayList<Ride> RideRequest = new ArrayList();
     private ArrayList<Driver> pendingDrivers = new ArrayList();
-
+    private ArrayList<String> adminDiscontsAreas=new ArrayList();
     public DataBase() {
     }
 
@@ -101,6 +101,9 @@ public class DataBase {
 
     public void addPendingDrivers(Driver d) {
         this.pendingDrivers.add(d);
-        System.out.println("driver add sucessfuly");
+        //System.out.println("driver add sucessfuly");
+    }
+    public void addAdminDiscontsArea(String area){
+        this.adminDiscontsAreas.add(area);
     }
 }

@@ -79,10 +79,7 @@ public class Driver extends Person {
         this.rates.add(rate);
     }
 
-    public void mkOffer() {
-        System.out.println("Hi Driver.. Please enter Ride's price: ");
-        Scanner sin = new Scanner(System.in);
-        int price = sin.nextInt();
+    public void mkOffer(int price) {
         this.availbleRide.setPrice(price);
     }
 

@@ -7,16 +7,22 @@ package com.software.software.actors;
 
 
 import java.util.ArrayList;
-import java.util.Scanner;
-
+import com.software.software.Data.storage;
 import com.software.software.operations.RideOperations;
 import com.software.software.ride.Ride;
 
 public class Driver extends Person {
+    static storage DB=new storage();
+    private int driverID;
     private String nationalId;
     private String driverLicenseNumber;
     private int availbleSets;
-
+    public void setDriverID(){
+        driverID=DB.getDriversList().size()+1;
+    }
+    public int getDriverId(){
+        return driverID;
+    }
     public int getAvailbleSets() {
         return availbleSets;
     }
@@ -96,6 +102,7 @@ public class Driver extends Person {
     public static void mkOffer(int price) {
         RideOperations.setEvent(1, availbleRide);
         availbleRide.setPrice(price);
+        DB.pushOffer(availbleRide);
     }
 
     public String toString() {

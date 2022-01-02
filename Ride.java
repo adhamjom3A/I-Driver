@@ -3,12 +3,14 @@ package com.software.software.ride;
 
 import java.util.ArrayList;
 
+import com.software.software.Data.storage;
 import com.software.software.Discounts.ridePrice;
 import com.software.software.actors.Driver;
 import com.software.software.actors.User;
 
 public class Ride implements ridePrice {
-
+    storage DB=new storage();
+    private int rideID=0;
     private String Source;
     private String Destination;
     private User user;
@@ -16,6 +18,12 @@ public class Ride implements ridePrice {
     private int numberOfPassenger;
     private int price;
     private int Rate;
+    public  void setRideId(){
+        rideID=DB.getRideRequest().size()+1;
+    }
+    public int getRideId(){
+        return rideID;
+    }
     private ArrayList<event> rideEvents=new ArrayList<event>();
     public void setPrice(int p) {
         this.price = p;

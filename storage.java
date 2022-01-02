@@ -81,5 +81,26 @@ public class storage {
     public void addPendingDrivers(Driver d) {
         this.DB.addPendingDrivers(d);
     }
+    public Driver getPendingDriverById(int id){
+        return DB.getPendingDriverById(id);
+    }
+    public Driver getActiveDriverById(int id){
+        return DB.getPendingDriverById(id);
+    }
+    public void removePendingDriver(Driver driver){
+        DB.getPendingDrivers().remove(driver);
+    }
+    public Ride getRideByID(int id){
+        return DB.getRideById(id);
+    }
+    public void pushOffer(Ride offeredRide){
+        DB.pushOffer(offeredRide);
+    }
+    public ArrayList<Ride> getOffers(int rideId){
+        return DB.getOffers(rideId);
+    }
+    public User getUserById(int id){
+        return DB.getUserById(id);
+    }
 }
 

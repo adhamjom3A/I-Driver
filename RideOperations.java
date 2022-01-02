@@ -1,6 +1,5 @@
 package com.software.software.operations;
 
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -28,19 +27,22 @@ public class RideOperations  {
         return drivers;
     }
 
-    public ArrayList<Driver> assignDriverToRide(Ride r) {
+    public ArrayList<Driver> assignDriverToRide() {
+        Ride r=new Ride();
         ArrayList<Driver> suitableDriver = new ArrayList<Driver>();
         for (int driver = 0; driver < inventory.getDriversList().size(); driver++) {
-            for (int favArea = 0; favArea < inventory.getDriversList().get(driver).getFavAreas().size(); favArea++) {
-                if (r.getDestination().equalsIgnoreCase(inventory.getDriversList().get(driver)
-                        .getFavAreas().get(favArea))
-                        && (inventory.getDriversList().get(driver).getPersonInfo().getCurrentStatus()
-                        .equals(status))) {
-                    inventory.getDriversList().get(driver).notify();
-                    inventory.getDriversList().get(driver).setAvailbleRide(r);
-                    inventory.getDriversList().get(driver).mkNotified();
-                    suitableDriver.add(inventory.getDriversList().get(driver));
-
+            for(int rideRequest=0; rideRequest<inventory.getRideRequest().size(); rideRequest++){
+                r=inventory.getRideRequest().get(rideRequest);
+                for (int favArea = 0; favArea < inventory.getDriversList().get(driver).getFavAreas().size(); favArea++) {
+                    if (r.getDestination().equalsIgnoreCase(inventory.getDriversList().get(driver)
+                            .getFavAreas().get(favArea))
+                            && (inventory.getDriversList().get(driver).getPersonInfo().getCurrentStatus()
+                            .equals(status))) {
+                        //inventory.getDriversList().get(driver).notify();
+                        inventory.getDriversList().get(driver).setAvailbleRide(r);
+                        inventory.getDriversList().get(driver).mkNotified();
+                        suitableDriver.add(inventory.getDriversList().get(driver));
+                    }
                 }
             }
         }
@@ -57,14 +59,10 @@ public class RideOperations  {
         }
         return r;
     }
-    public void showRideEvents(Ride ride){
-        ArrayList<event> rideEvents= ride.getRideEvents();
-        for(int i=0; i< rideEvents.size(); i++){
-            System.out.println(rideEvents.get(i).eventName);
-            System.out.println(rideEvents.get(i).eventCaptain);
-            System.out.println(rideEvents.get(i).eventTime);
-            System.out.println(rideEvents.get(i).getEventUser());
-        }
+    public ArrayList<event> showRideEvents(int rideID){
+        ArrayList<event> rideEvents= inventory.getRideByID(rideID).getRideEvents();
+        return rideEvents;
+        
     }
     public static void setEvent(int index,Ride availbleRide){
         LocalDate localDate = LocalDate.now();
@@ -75,4 +73,6 @@ public class RideOperations  {
         availbleRide.getRideEvents().get(index).setEventTime(localTime);
         availbleRide.getRideEvents().get(index).setEventDate(localDate);
     }
+
+    
 }

@@ -7,6 +7,8 @@ package com.software.software.Data;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.software.software.actors.Driver;
 import com.software.software.actors.User;
@@ -20,6 +22,14 @@ public class DataBase {
     private ArrayList<Ride> RideRequest = new ArrayList();
     private ArrayList<Driver> pendingDrivers = new ArrayList();
     private ArrayList<String> adminDiscontsAreas=new ArrayList();
+    private Map<Integer,ArrayList<Ride>> offers=new HashMap<Integer,ArrayList<Ride>>();
+    public void pushOffer(Ride offeredRide){
+       if(offers.get(offeredRide.getRideId())!=null){
+           ArrayList<Ride> offeredRides=offers.get(offeredRide.getRideId());
+           offers.remove(offeredRide.getRideId());
+           offers.put(offeredRide.getRideId(), offeredRides);
+       }
+    }
     public DataBase() {
     }
 
@@ -110,6 +120,49 @@ public class DataBase {
     }
     public void addAdminDiscontsArea(String area){
         this.adminDiscontsAreas.add(area);
+    }
+    public Driver getActiveDriverById(int id){
+        Driver selectedDriver=new Driver();
+        for (int driver=0; driver<driversList.size(); driver++){
+            if (id==driversList.get(driver).getDriverId()){
+                selectedDriver= driversList.get(driver);
+                break;
+            }
+        }
+        return selectedDriver;
+    }
+
+    public Driver getPendingDriverById(int id){
+        Driver selectedDriver=new Driver();
+        for (int driver=0; driver<pendingDrivers.size(); driver++){
+            if (id==pendingDrivers.get(driver).getDriverId()){
+                selectedDriver= pendingDrivers.get(driver);
+                break;
+            }
+        }
+        return selectedDriver;
+    }
+    public Ride getRideById(int id){
+        Ride selectedRide=new Ride();
+        for(int ride=0; ride<RideRequest.size(); ride++){
+            if (id==RideRequest.get(ride).getRideId()){
+                selectedRide=RideRequest.get(ride);
+            }
+        }
+        return selectedRide;
+    }
+    public ArrayList<Ride>getOffers(int rideId){
+        return offers.get(rideId);
+    }
+
+    public User getUserById(int id){
+        User u=new User();
+        for (int user=0; user<usersList.size(); user++){
+            if (usersList.get(user).getUserId()==id){
+                u= usersList.get(user);
+            }
+        }
+        return u;
     }
 }
 

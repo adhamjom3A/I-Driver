@@ -1,16 +1,21 @@
+package com.software.software.Data;
+
 //
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by FernFlower decompiler)
 //
 
-package company;
 
 import java.util.ArrayList;
 
+import com.software.software.actors.Driver;
+import com.software.software.actors.User;
+import com.software.software.ride.Ride;
+
 public class DataBase {
     private static DataBase uniqueLists = new DataBase();
-    private ArrayList<Driver> driversList = new ArrayList();
-    private ArrayList<User> usersList = new ArrayList();
+    public ArrayList<Driver> driversList = new ArrayList();
+    public ArrayList<User> usersList = new ArrayList();
     private ArrayList<Ride> compridesList = new ArrayList();
     private ArrayList<Ride> RideRequest = new ArrayList();
     private ArrayList<Driver> pendingDrivers = new ArrayList();
@@ -107,3 +112,4 @@ public class DataBase {
         this.adminDiscontsAreas.add(area);
     }
 }
+

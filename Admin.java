@@ -1,13 +1,29 @@
-package company;
+package com.software.software.control;
+
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.software.software.Data.storage;
+import com.software.software.actors.Driver;
+import com.software.software.actors.Person;
+import com.software.software.actors.Status;
+import com.software.software.operations.RideOperations;
+import com.software.software.ride.Ride;
+
 public class Admin {
     RideOperations rideOperations;
     storage array=new storage();
-    private String userName="admin";
-    private String password="admin";
+    private static String userName="admin";
+    private static String password="admin";
+    public static boolean signIn(String Name,String pass){
+        if(userName.equalsIgnoreCase(Name)&&password.equalsIgnoreCase(pass)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
     public String getUserName() {
         return userName;
     }
@@ -73,3 +89,4 @@ public class Admin {
         rideOperations.showRideEvents(ride);
     }
 }
+

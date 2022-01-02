@@ -1,8 +1,13 @@
-package company;
+package com.software.software.ride;
+
 
 import java.util.ArrayList;
 
-public class Ride {
+import com.software.software.Discounts.ridePrice;
+import com.software.software.actors.Driver;
+import com.software.software.actors.User;
+
+public class Ride implements ridePrice {
 
     private String Source;
     private String Destination;
@@ -49,7 +54,7 @@ public class Ride {
         Destination = destination;
     }
     public int getNumberOfPassenger() {
-        return numberOfPassenger;
+        return this.numberOfPassenger;
     }
     public void setNumberOfPassenger(int numberOfPassenger) {
         this.numberOfPassenger = numberOfPassenger;
@@ -78,4 +83,8 @@ public class Ride {
                         '}';
     }
 
+    @Override
+    public int getRidePrice() {
+        return this.getPrice();
+    }
 }

@@ -1,14 +1,20 @@
+package com.software.software.Data;
+
 //
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by FernFlower decompiler)
 //
 
-package company;
 
 import java.util.ArrayList;
 
+import com.software.software.actors.Driver;
+import com.software.software.actors.User;
+import com.software.software.ride.Ride;
+
 public class storage {
     DataBase DB = DataBase.getInstance();
+    public Object driversList;
 
     public storage() {
     }
@@ -76,3 +82,4 @@ public class storage {
         this.DB.addPendingDrivers(d);
     }
 }
+

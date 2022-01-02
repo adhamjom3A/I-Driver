@@ -1,13 +1,32 @@
-package company;
+package com.software.software.operations;
+
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Observable;
 
-public class RideOperations extends Observable {
+import com.software.software.Data.storage;
+import com.software.software.actors.Driver;
+import com.software.software.ride.Ride;
+import com.software.software.ride.event;
+import com.software.software.actors.Status;
+
+
+
+public class RideOperations  {
     storage inventory = new storage();
     Status status=Status.ACTIVE;
 
+    //refactoring
+    public ArrayList<Driver> FilterDrivers(ArrayList<Driver> a,Ride r){
+        ArrayList<Driver> drivers = new ArrayList<>();
+        for (int d=0; d<a.size();d++){
+            if (r.getNumberOfPassenger()<=a.get(d).getAvailbleSets()){
+                drivers.add(a.get(d));
+            }
+        }
+        return drivers;
+    }
 
     public ArrayList<Driver> assignDriverToRide(Ride r) {
         ArrayList<Driver> suitableDriver = new ArrayList<Driver>();
@@ -21,11 +40,13 @@ public class RideOperations extends Observable {
                     inventory.getDriversList().get(driver).setAvailbleRide(r);
                     inventory.getDriversList().get(driver).mkNotified();
                     suitableDriver.add(inventory.getDriversList().get(driver));
+
                 }
             }
         }
-        return suitableDriver;
+        return FilterDrivers(suitableDriver,r);
     }
+
     ///this function return all the request rides with the same favorite area
     public ArrayList <Ride> allFavRide(String driverFavArea) {
         ArrayList<Ride> r = new ArrayList<Ride>();
@@ -42,10 +63,10 @@ public class RideOperations extends Observable {
             System.out.println(rideEvents.get(i).eventName);
             System.out.println(rideEvents.get(i).eventCaptain);
             System.out.println(rideEvents.get(i).eventTime);
-            System.out.println(rideEvents.get(i).eventUser);
+            System.out.println(rideEvents.get(i).getEventUser());
         }
     }
-    public void setEvent(int index,Ride availbleRide){
+    public static void setEvent(int index,Ride availbleRide){
         LocalDate localDate = LocalDate.now();
         LocalTime localTime = LocalTime.now();
         availbleRide.getRideEvents().get(index).setEventName(event.name.arrivedToLocation);

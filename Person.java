@@ -1,9 +1,11 @@
+package com.software.software.actors;
+
 //
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by FernFlower decompiler)
 //
 
-package company;
+
 
 public class Person {
     private personInfo PersonInfor = new personInfo();
@@ -30,3 +32,4 @@ public class Person {
         this.getPersonInfo().setCurrentStatus(s);
     }
 }
+

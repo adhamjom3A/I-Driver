@@ -1,11 +1,6 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
+package com.software.software.actors;
 
-package company;
-
-enum Status {
+public enum Status {
     SUSPENDED,
     PENDING,
     ACTIVE;

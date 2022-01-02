@@ -1,13 +1,16 @@
+package com.software.software.actors;
+
 //
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by FernFlower decompiler)
 //
 
-package company;
-
 import java.util.regex.Pattern;
 
+import com.software.software.Data.storage;
+
 public class personInfo {
+    private String birthday;
     private String userName;
     private String phoneNumber;
     private String email;
@@ -19,6 +22,12 @@ public class personInfo {
     public personInfo() {
     }
 
+    public String getBirthday(){
+        return birthday;
+    }
+    public void setBirthday(String day){
+        birthday=day;
+    }
     public String getUserName() {
         return this.userName;
     }
@@ -51,7 +60,7 @@ public class personInfo {
         if (this.isValidPassword(password)) {
             this.password = password;
         } else {
-            System.out.println("Sorry!your password try another password");
+          //  System.out.println("Sorry!your password try another password");
         }
 
     }
@@ -164,3 +173,4 @@ public class personInfo {
         return false;
     }
 }
+

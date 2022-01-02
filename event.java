@@ -1,14 +1,15 @@
-package company;
+package com.software.software.ride;
+
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class event {
-    enum name{puttingPrice,arrivedToLocation,acceptingPrice,arrivedToDestination}
-    name eventName;
-    LocalTime eventTime;
+    public enum name{puttingPrice,arrivedToLocation,acceptingPrice,arrivedToDestination}
+    public name eventName;
+    public LocalTime eventTime;
     LocalDate eventDate;
-    String eventCaptain;
+    public String eventCaptain;
     String eventUser;
     public LocalDate getEventDate() {
         return eventDate;
@@ -50,3 +51,4 @@ public class event {
         this.eventUser = eventUser;
     }
 }
+

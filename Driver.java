@@ -1,19 +1,33 @@
+package com.software.software.actors;
+
 //
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by FernFlower decompiler)
 //
 
-package company;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.software.software.operations.RideOperations;
+import com.software.software.ride.Ride;
+
 public class Driver extends Person {
     private String nationalId;
     private String driverLicenseNumber;
+    private int availbleSets;
+
+    public int getAvailbleSets() {
+        return availbleSets;
+    }
+
+    public void setAvailbleSets(int availbleSets) {
+        this.availbleSets = availbleSets;
+    }
+
     private ArrayList<String> favAreas = new ArrayList();
     private ArrayList<Integer> rates = new ArrayList();
-    private Ride availbleRide = new Ride();
+    private static Ride availbleRide = new Ride();
     private boolean notified = false;
 
     public Driver() {
@@ -79,8 +93,9 @@ public class Driver extends Person {
         this.rates.add(rate);
     }
 
-    public void mkOffer(int price) {
-        this.availbleRide.setPrice(price);
+    public static void mkOffer(int price) {
+        RideOperations.setEvent(1, availbleRide);
+        availbleRide.setPrice(price);
     }
 
     public String toString() {

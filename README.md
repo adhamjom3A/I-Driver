@@ -1,1 +1,1 @@
-# A3M
+For practicing on solid principles, design patterns and clean code, implemented iDriver which is similar to Uber, iDriver is an application with its restful API, the user can request a ride and the drivers who are interested in this ride can make an offer for it and the user can accept the most suitable offer for him.

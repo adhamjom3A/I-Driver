@@ -1,0 +1,529 @@
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../shared/styles/IconBroken.dart';
+import 'package:intl/intl.dart';
+
+import 'admin  community cubit/cubit.dart';
+import 'admin community model/AdminCommunityModel.dart';
+
+
+class AdminCommunity extends StatefulWidget {
+  const AdminCommunity({Key? key}) : super(key: key);
+
+
+  @override
+  State<AdminCommunity> createState() => _TesttState();
+
+
+}
+
+class _TesttState extends State<AdminCommunity> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  final TextController=TextEditingController();
+
+
+  String test='phopia';
+  String community='phopia';
+  String updated='';
+
+  void updateState(){
+    setState(() {
+      this.community=this.TextController.text;
+    });
+  }
+
+  String _value = 'diabetics';
+
+  void _onChanged(String value) {
+    setState(() => _value = ' ${value}');
+  }
+
+  void _onSubmit(String value) {
+    setState(() => _value = ' ${value}');
+  }
+
+
+
+
+  List<DynamicWidget> listDynamic = [];
+  List<String> data = [];
+
+  Icon floatingIcon = const Icon(Icons.add);
+
+  addDynamic() {
+    listDynamic.add(DynamicWidget(value1: _value,));
+
+    setState(() {});
+
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+
+
+          body:Container(
+
+            child: Column(
+
+
+
+                children: <Widget>[
+
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children:  [
+
+                      const BackButton(),
+                      const Padding(
+                        padding:EdgeInsets.symmetric(vertical: 25,horizontal: 5),
+                        child: Text(
+                          " Admin Communities",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize:27,
+                            fontStyle: FontStyle.italic,
+                            color: Color(0xFF588157),
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                      const Spacer(),
+                      IconButton(onPressed: () {
+
+                        showDialog(
+                            context: context,
+                            builder: (context)=>AlertDialog(
+                                title: const Text("Add Community"),
+                                actions: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 18),
+                                    child:   Container(
+                                      width: 300,
+                                      height: 50,
+                                      child: TextFormField(
+                                        // maxLines: 5,
+                                        controller: TextController,
+                                        keyboardType: TextInputType.text,
+
+                                        decoration: const InputDecoration(
+                                            icon: Icon(Icons.quickreply), //icon of text field
+                                            labelText: '   enter community name  ... ' //label text of field
+                                        ),
+
+                                        onChanged: _onChanged,
+
+                                      ),
+                                    ),
+
+
+                                  ),
+
+
+
+                                  Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.end,
+                                      children: [
+                                        TextButton(
+                                          child: const Text('Cancel '),
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                        ),
+                                        TextButton(
+                                            child: const Text('Confirm '),
+                                            onPressed: () {
+                                              addDynamic();
+                                              Navigator.pop(context);
+                                              AdminCommunityCubit.get(context).AddCommunityy(name: TextController.text);
+
+                                              // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DynamicWidget(_value:_value)));
+                                            }),
+                                      ])
+                                ] )
+                        );
+
+                      }, icon: const Icon(IconBroken.Plus,color: Colors.black87,)),
+
+
+
+                    ],
+                  ),
+                  Flexible(
+                    child: ListView.builder( itemCount: listDynamic.length,
+                        itemBuilder: (_, index)=>listDynamic[index] ),
+
+                  )
+
+
+                ]),
+          )
+
+      ),
+    );
+  }
+
+
+
+  Widget BuildCommunityItem (context) =>Card(
+    clipBehavior: Clip.antiAliasWithSaveLayer,
+    elevation: 10.0,
+    margin: const EdgeInsets.all(
+      8.0,
+    ),
+    child: Column(children: [
+      Row(children: [
+        const CircleAvatar(
+          radius: 25,
+          backgroundImage: AssetImage('assets/images/community.jpg'),
+        ),
+        const SizedBox(
+          width: 10,
+        ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Text(_value,
+
+                    style:
+                    Theme.of(context).textTheme.subtitle1!.copyWith(
+                      height: 1.4,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 6,
+                  ),
+                  const Icon(
+                    Icons.check_circle,
+                    color: Colors.blueGrey,
+                    size: 16,
+                  ),
+                ],
+              ),
+              Text(
+                DateFormat("yyyy-MM-dd").format(DateTime.now()),
+                style: Theme.of(context).textTheme.caption!.copyWith(
+                  height: 1.4,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(
+          width: 6,
+        ),
+        // IconButton(
+        //   onPressed: () {},
+        //   icon: Icon(
+        //     Icons.more_horiz,
+        //   ),
+        // ),
+
+        PopupMenuButton(
+          icon: const Icon(Icons.more_horiz,
+              color: Colors.black), // add this line
+          itemBuilder: (_) => <PopupMenuItem<String>>[
+
+
+            PopupMenuItem<String>(
+                child: Container(
+                    width: 100,
+                    // height: 30,
+                    child: TextButton.icon(
+                      label: const Text(
+                        "Update",
+                        style: TextStyle(color: Colors.red),
+                      ),
+                      icon: Icon(
+                        Icons.update,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      onPressed: () {
+                        //do logic, or keep it empty
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: const Text("update community name"),
+                            actions: [
+                              Container(
+                                width: 300,
+                                height: 50,
+                                child: TextFormField(
+                                  // maxLines: 5,
+                                  controller: TextController,
+                                  keyboardType: TextInputType.text,
+
+                                  decoration: const InputDecoration(
+                                      icon: Icon(Icons.quickreply), //icon of text field
+                                      labelText: '   enter community name  ... ' //label text of field
+                                  ),
+
+                                  onChanged: _onChanged,
+
+                                ),
+                              ),
+                              Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.end,
+                                  children: [
+                                    TextButton(
+                                      child: const Text('Cancel '),
+                                      onPressed: () =>
+                                          Navigator.pop(context),
+                                    ),
+                                    TextButton(
+                                      child: const Text('Update '),
+                                      onPressed: () =>
+
+                                          updateState(),
+
+
+                                    ),
+                                  ]),
+                            ],
+                          ),
+                        );
+                      },
+                    ))),
+
+
+
+
+
+
+
+
+            PopupMenuItem<String>(
+                child: Container(
+                    width: 100,
+                    // height: 30,
+                    child: TextButton.icon(
+                      label: const Text(
+                        "Delete",
+                        style: TextStyle(color: Colors.red),
+                      ),
+                      icon: Icon(
+                        Icons.delete,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      onPressed: () {
+                        //do logic, or keep it empty
+                      },
+                    ))),
+          ],
+        )
+      ]),
+    ]),
+  );
+}
+
+class DynamicWidget extends StatefulWidget {
+  String value1='diabetics';
+
+  DynamicWidget ({
+    Key? key,
+    required this.value1,
+  }) : super(key: key);
+
+
+
+
+  @override
+  State<DynamicWidget> createState() => _DynamicWidgetState();
+}
+
+class _DynamicWidgetState extends State<DynamicWidget> {
+
+
+  final TextController = TextEditingController();
+
+  String test = 'phopia';
+
+  String community = 'phopia';
+
+  String updated = '';
+
+  void updateState() {
+    setState(() {
+      this.community = this.TextController.text;
+    });
+  }
+
+  String _value = 'diabetics';
+
+  void _onChanged(String value) {
+    setState(() => widget.value1 = ' ${value}');
+  }
+
+  void _onSubmit(String value) {
+    setState(() => widget.value1 = ' ${value}');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      elevation: 10.0,
+      margin: const EdgeInsets.all(
+        8.0,
+      ),
+      child: Column(children: [
+        Row(children: [
+          const CircleAvatar(
+            radius: 25,
+            backgroundImage: NetworkImage(
+              'https://www.kindpng.com/picc/m/384-3840161_blue-community-icon-png-transparent-png.png',
+            ),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Text(widget.value1,
+
+                      style:
+                      Theme
+                          .of(context)
+                          .textTheme
+                          .subtitle1!
+                          .copyWith(
+                        height: 1.4,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 6,
+                    ),
+                    const Icon(
+                      Icons.check_circle,
+                      color: Colors.blueGrey,
+                      size: 16,
+                    ),
+                  ],
+                ),
+                Text(
+                  DateFormat("yyyy-MM-dd").format(DateTime.now()),
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .caption!
+                      .copyWith(
+                    height: 1.4,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            width: 6,
+          ),
+          // IconButton(
+          //   onPressed: () {},
+          //   icon: Icon(
+          //     Icons.more_horiz,
+          //   ),
+          // ),
+
+          PopupMenuButton(
+            icon: const Icon(Icons.more_horiz,
+                color: Colors.black), // add this line
+            itemBuilder: (_) =>
+            <PopupMenuItem<String>>[
+
+
+              PopupMenuItem<String>(
+                  child: Container(
+                      width: 100,
+                      // height: 30,
+                      child: TextButton.icon(
+                        label: const Text(
+                          "Update",
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        icon: Icon(
+                          Icons.update,
+                          color: Theme
+                              .of(context)
+                              .primaryColor,
+                        ),
+                        onPressed: () {
+                          //do logic, or keep it empty
+                          showDialog(
+                            context: context,
+                            builder: (context) =>
+                                AlertDialog(
+                                  title: const Text("update community name"),
+                                  actions: [
+                                    Container(
+                                      width: 300,
+                                      height: 50,
+                                      child: TextFormField(
+                                        // maxLines: 5,
+                                        controller: TextController,
+                                        keyboardType: TextInputType.text,
+
+                                        decoration: const InputDecoration(
+                                            icon: Icon(Icons.quickreply),
+                                            //icon of text field
+                                            labelText: '   enter community name  ... ' //label text of field
+                                        ),
+
+                                        onChanged: _onChanged,
+
+                                      ),
+                                    ),
+                                    Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.end,
+                                        children: [
+                                          TextButton(
+                                            child: const Text('Cancel '),
+                                            onPressed: () =>
+                                                Navigator.pop(context),
+                                          ),
+                                          TextButton(
+                                            child: const Text('Update '),
+                                            onPressed: () =>
+                                                updateState(),
+                                          ),
+                                        ]),
+                                  ],
+                                ),
+                          ); },))),
+              PopupMenuItem<String>(
+                  child: Container(
+                      width: 100,
+                      // height: 30,
+                      child: TextButton.icon(
+                        label: const Text(
+                          "Delete",
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        icon: Icon(
+                          Icons.delete,
+                          color: Theme
+                              .of(context)
+                              .primaryColor,
+                        ),
+                        onPressed: () {
+                          //do logic, or keep it empty
+                        },
+                     ))),
+            ],)]),]),);}}
